@@ -28,5 +28,3 @@ In literature link between high levels of NO2, PM2.5 and PM 10 to mental health 
 - https://www.sciencedirect.com/science/article/pii/S016517811830800X
 - https://www.cambridge.org/core/journals/the-british-journal-of-psychiatry/article/association-between-air-pollution-exposure-and-mental-health-service-use-among-individuals-with-first-presentations-of-psychotic-and-mood-disorders-retrospective-cohort-study/010F283B9107A5F04C51F90B5D5F96D6
 - https://pmc.ncbi.nlm.nih.gov/articles/PMC9812022/
-
-## Machine Learning Model
