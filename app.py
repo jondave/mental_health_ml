@@ -444,7 +444,7 @@ def make_district_map(df_model: pd.DataFrame, model: RandomForestRegressor) -> T
     feature_cols = ["Age", "IMD_Decile", "NO2", "PM25", "PM10", "Is_Urban"]
     region_df["Predicted_PHQ9"] = model.predict(region_df[feature_cols]).round(2)
 
-    district_map = folium.Map(location=[53.2, -0.2], zoom_start=8, tiles="CartoDB positron")
+    district_map = folium.Map(location=[53.2, -0.2], zoom_start=9, tiles="CartoDB positron")
     score_min = float(region_df["Predicted_PHQ9"].min())
     score_max = float(region_df["Predicted_PHQ9"].max())
     color_scale = linear.YlOrRd_09.scale(score_min, score_max)
@@ -463,7 +463,6 @@ def make_district_map(df_model: pd.DataFrame, model: RandomForestRegressor) -> T
             popup=(
                 f"<b>{row['District']}</b><br>"
                 f"Predicted PHQ-9: {score:.2f}<br>"
-                f"Source site: {row['Source_Site']}"
             ),
         ).add_to(district_map)
 
