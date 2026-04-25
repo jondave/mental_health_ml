@@ -1,0 +1,23 @@
+# Core data and notebook stack
+numpy>=1.26
+pandas>=2.2
+
+# Visualization
+matplotlib>=3.8
+seaborn>=0.13
+plotly>=5.20
+
+# Machine learning and explainability
+scikit-learn>=1.4
+shap>=0.45
+
+# Notebook kernel
+ipykernel>=6.29
+nbformat>=5.10
+
+# Web app
+flask>=3.0
+flask-socketio>=5.3
+
+# Interactive map
+folium>=0.17

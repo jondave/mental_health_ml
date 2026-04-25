@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mental Health Model Explorer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Mental Health Model Explorer</h1>
+      <p>Tune PHQ-9 generation weights, train the model, and inspect correlation and SHAP outputs.</p>
+    </header>
+
+    <section class="card">
+      <h2>Weights</h2>
+      <form method="post" class="weights-grid">
+        {% for name, value in weights.items() %}
+        <label>
+          <span>{{ name }}</span>
+          <input type="number" step="0.001" name="{{ name }}" value="{{ value }}">
+        </label>
+        {% endfor %}
+        <button type="submit">Run Pipeline</button>
+      </form>
+      <p>Adjust the weights for each variable to see how it impacts the generated dataset of PHQ-9 scores and model performance. Click "Run Pipeline" to execute the data generation, model training, and visualisation steps with the new weights.</p>
+    </section>
+
+    {% if error %}
+    <section class="card error">
+      <h2>Error</h2>
+      <pre>{{ error }}</pre>
+    </section>
+    {% endif %}
+
+    {% if metrics %}
+    <section class="card metrics">
+      <h2>Machine Learning Model (Random Forest) Metrics</h2>
+      <div class="metric-grid">
+        <article><h3>R-squared</h3><p>{{ '%.3f'|format(metrics.r2) }}</p></article>
+        <article><h3>RMSE</h3><p>{{ '%.3f'|format(metrics.rmse) }}</p></article>
+        <article><h3>MAE</h3><p>{{ '%.3f'|format(metrics.mae) }}</p></article>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if images %}
+    <section class="card">
+      <h2>Correlation Heatmap</h2>
+      <img src="data:image/png;base64,{{ images.corr }}" alt="Correlation heatmap">
+      <p>This shows the correlations between the variables in the simulated health dataset.</p>
+    </section>
+
+    <section class="card">
+      <h2>Model Visualisation</h2>
+      <img src="data:image/png;base64,{{ images.shap_summary }}" alt="SHAP summary">
+      <p>This SHAP summary plot shows the impact of each feature on the model's PHQ-9 predictions across all samples.</p>
+    </section>
+
+    <section class="card">
+      <h2>Feature Importance</h2>
+      <img src="data:image/png;base64,{{ images.shap_bar }}" alt="SHAP feature importance bar chart">
+      <p>This plot shows the average magnitude of each feature's impact on PHQ-9 predictions.</p>
+    </section>
+
+    <section class="card">
+      <h2>Urban vs Rural Comparison</h2>
+      <img src="data:image/png;base64,{{ images.urban_rural }}" alt="Urban vs rural comparison">
+      <p>This boxplot compares predicted PHQ-9 scores for urban and rural districts, showing the distribution and central tendency for each group.</p>
+    </section>
+
+    <section class="card">
+      <h2>Lincolnshire District Map of Predicted PHQ-9 Scores</h2>
+      <div class="folium-wrap">{{ images.district_map | safe }}</div>
+      <h3>District Predictions</h3>
+      <div class="table-wrap">{{ images.district_table | safe }}</div>
+      <p>This map visualises the predicted PHQ-9 scores for each district in Lincolnshire.</p>
+    </section>
+    {% endif %}
+  </main>
+</body>
+</html>

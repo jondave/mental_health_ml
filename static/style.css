@@ -1,0 +1,153 @@
+:root {
+  --bg: #f3f6f9;
+  --card: #ffffff;
+  --ink: #172b4d;
+  --muted: #5e6c84;
+  --accent: #1b7f79;
+  --danger: #b42318;
+  --border: #d6dde6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(180deg, #eef3f8 0%, #f9fbfd 100%);
+  color: var(--ink);
+}
+
+.page {
+  width: min(1200px, 92vw);
+  margin: 24px auto 48px;
+  display: grid;
+  gap: 16px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+}
+
+.weights-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.weights-grid label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.weights-grid input {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+button {
+  grid-column: 1 / -1;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.03);
+}
+
+.metric-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.metric-grid article {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.metric-grid h3 {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.metric-grid p {
+  margin: 8px 0 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.error {
+  border-color: #f3b9b3;
+}
+
+.error pre {
+  white-space: pre-wrap;
+  color: var(--danger);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table-wrap thead tr {
+  background: var(--accent);
+  color: #fff;
+}
+
+.table-wrap th {
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table-wrap td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+}
+
+.table-wrap tbody tr:nth-child(even) {
+  background: #f5f8fc;
+}
+
+.table-wrap tbody tr:hover {
+  background: #eaf3f2;
+}
