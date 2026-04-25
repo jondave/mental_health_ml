@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  <div id="loading-overlay" class="loading-overlay" hidden>
+    <div class="spinner"></div>
+    <p>Running pipeline&hellip;</p>
+  </div>
   <main class="page">
     <header>
       <h1>Mental Health Model Explorer</h1>
@@ -22,7 +26,7 @@
           <input type="number" step="0.001" name="{{ name }}" value="{{ value }}">
         </label>
         {% endfor %}
-        <button type="submit">Run Pipeline</button>
+        <button type="submit" id="run-btn">Run Pipeline</button>
       </form>
       <p>Adjust the weights for each variable to see how it impacts the generated dataset of PHQ-9 scores and model performance. Click "Run Pipeline" to execute the data generation, model training, and visualisation steps with the new weights.</p>
     </section>
@@ -79,5 +83,11 @@
     </section>
     {% endif %}
   </main>
+  <script>
+    document.querySelector('.weights-grid').addEventListener('submit', function () {
+      document.getElementById('loading-overlay').hidden = false;
+      document.getElementById('run-btn').disabled = true;
+    });
+  </script>
 </body>
 </html>
